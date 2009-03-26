@@ -1,0 +1,61 @@
+<?xml version = "1.0"?>
+<xsd:schema xmlns:xsd= "http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="vmname" type="xsd:string"/>
+<xsd:element name="vmip" type="xsd:string"/>
+
+<xsd:element name="vm">
+ <xsd:complexType>
+   <xsd:sequence>
+      <xsd:element ref="vmname"/>
+      <xsd:element ref="vmip"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="virtualmachines">
+   <xsd:complexType>
+     <xsd:sequence>
+         <xsd:element ref="vm" minOccurs="1" maxOccurs="unbounded"/>
+     </xsd:sequence>
+   </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="hosttype" type="xsd:string"/> 
+<xsd:element name="hostip" type="xsd:string"/> 
+<xsd:element name="username" type="xsd:string"/> 
+<xsd:element name="password" type="xsd:string"/>
+
+<xsd:element name="host">
+   <xsd:complexType>
+	<xsd:sequence>
+		<xsd:element ref="hosttype"/>
+		<xsd:element ref="hostip"/>
+		<xsd:element ref="username"/>
+		<xsd:element ref="password"/>
+		<xsd:element ref="virtualmachines" maxOccurs="unbounded"/>
+     </xsd:sequence>
+   </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="name" type="xsd:string"/>
+
+<xsd:element name="testbed"> 
+  <xsd:complexType>
+	<xsd:sequence>
+		<xsd:element ref="name"/>
+		<xsd:element ref="host" maxOccurs="unbounded"/>
+	</xsd:sequence>
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="resource"> 
+  <xsd:complexType>
+   <xsd:sequence>
+	<xsd:element ref="testbed" minOccurs="1" maxOccurs="unbounded"/>
+   </xsd:sequence> 
+  </xsd:complexType> 
+ </xsd:element> 
+
+</xsd:schema>
+

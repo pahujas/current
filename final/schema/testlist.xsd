@@ -1,0 +1,90 @@
+<?xml version = "1.0"?>
+<xsd:schema xmlns:xsd= "http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="parms" type="xsd:string"/>
+<xsd:element name="scriptname" type="xsd:string"/>
+<xsd:element name="testcontroller" type="xsd:string"/>
+<xsd:element name="testcaseid" type="xsd:string"/>
+<xsd:element name="duration" type="xsd:string"/>
+<xsd:element name="workdir" type="xsd:string"/>
+<xsd:element name="testbed" type="xsd:string"/>
+
+<xsd:element name="testcase">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element ref="testcaseid"/>
+      <xsd:element ref="testbed"/>
+      <xsd:element ref="duration"/>
+      <xsd:element ref="workdir"/>
+      <xsd:element ref="testcontroller"/>
+      <xsd:element ref="parms" maxOccurs="unbounded"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+
+
+<xsd:element name="setup">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element ref="scriptname"/>
+      <xsd:element ref="testbed" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="duration"/>
+      <xsd:element ref="workdir"/>
+      <xsd:element ref="parms" maxOccurs="unbounded"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+
+<xsd:element name="clean">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element ref="scriptname"/>
+      <xsd:element ref="testbed" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="duration"/>
+      <xsd:element ref="workdir"/>
+      <xsd:element ref="parms" maxOccurs="unbounded"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="controller">
+  <xsd:complexType>
+    <xsd:sequence>
+      <xsd:element ref="testcontroller"/>
+      <xsd:element ref="setup" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element ref="clean" minOccurs="0" maxOccurs="unbounded"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+
+
+
+<xsd:element name="testcase-container">
+  <xsd:complexType>
+   <xsd:sequence>
+      <xsd:element ref="testcase" maxOccurs="unbounded"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="controller-container">
+  <xsd:complexType>
+   <xsd:sequence>
+      <xsd:element ref="controller" maxOccurs="unbounded"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="testlist">
+  <xsd:complexType>
+   <xsd:sequence>
+      <xsd:element ref="testcase-container" maxOccurs="unbounded"/>
+      <xsd:element ref="controller-container" maxOccurs="unbounded"/>
+   </xsd:sequence>
+ </xsd:complexType>
+</xsd:element>
+
+</xsd:schema>

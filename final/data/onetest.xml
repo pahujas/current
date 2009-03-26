@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<testlist> 
+<!-- COMMENTS -->
+<!-- Testcase Definitions -->
+<!-- Instructions on how to fill this file -->
+<!-- Divided into testcase-container and controller-container -->
+<!--  [testcase-container] -->
+<!--    Mandatory fields: testcaseid, duration, testcontroller name -->
+<!--    Optional fields: parms block (0-n), setup/cleanup block -->
+<!--    One testcase block per automated test in tds -->
+<!--    testcase-container can have setup/cleanup block see e.g tdsid2 -->
+<!--    testcase duration = testcase setup/cleanup + testcase execution -->
+<!--  [controller-container] -->
+<!--    Needed if setup/cleanup required per controller -->
+<!--    Must specify cleanup for each setup -->
+<!--    Can define as many parms block as you need -->
+<!--    Efficiently groups common controller setup/cleanup into same block -->
+
+<!-- Note for tdsid5, controller changes so we should run cleanup for prior
+controller and then setup for this controller -->
+<!--Don't change anything above/including this line -->
+
+<testcase-container> 
+  <testcase>
+      <testcaseid>tdsid1</testcaseid>
+      <testbed>default</testbed>
+      <duration>5m</duration>
+      <workdir>/automation/export/features/networking/common/controllers</workdir>
+      <testcontroller>pingController.pl</testcontroller>
+      <parms> </parms>
+   </testcase>
+  <testcase>
+      <testcaseid>tdsid2</testcaseid>
+      <testbed>default</testbed>
+      <duration>15m</duration>
+      <workdir>/automation/export/features/networking/common/controllers</workdir>
+      <testcontroller>songController.pl</testcontroller>
+      <parms>-val=23</parms>
+   </testcase>
+</testcase-container>
+
+<controller-container>
+ <controller>
+  <testcontroller>pingController.pl</testcontroller>
+  <setup>
+    <scriptname>setup_ping.pl</scriptname>
+    <duration>6m</duration>
+    <workdir>/automation/export/features/networking/setup</workdir>
+    <parms>dest-adapter="vmxnet3" source-adapter="vmxnet2"</parms>
+  </setup>
+  <clean>
+   <scriptname>clean_ping.pl</scriptname>
+   <duration>6m</duration>
+   <workdir>/automation/export/features/networking/cleanup</workdir>
+   <parms>dest-adapter="vmxnet3" source-adapter="vmxnet2"</parms>
+  </clean>
+ </controller>
+ <controller>
+  <testcontroller>vmciMainController</testcontroller>
+  <setup>
+    <scriptname>setup_vmci.pl</scriptname>
+    <duration>10m</duration>
+    <workdir>/automation/export/features/vmci/setup</workdir>
+    <parms>testcode="vmcicode.pl"</parms>
+    <parms>args="setup"</parms>
+  </setup>
+  <clean>
+   <scriptname>clean_vmci.pl</scriptname>
+   <duration>10m</duration>
+   <workdir>/automation/export/features/vmci/cleanup</workdir>
+   <parms>testcode="vmcicode.pl"</parms>
+   <parms>args="clean"</parms>
+  </clean>
+  </controller>
+ </controller-container>
+
+</testlist> 
