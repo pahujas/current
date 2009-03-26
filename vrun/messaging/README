@@ -1,0 +1,2 @@
+This module provides tools for sending receiving messages between process using staf queues.
+It also uses event service to know the state of each process.

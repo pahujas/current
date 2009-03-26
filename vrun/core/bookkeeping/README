@@ -1,0 +1,5 @@
+This module collects data for all modules. 
+It has knowledge of 
+ - state of each process
+ - state of completed runs and location of result.
+ - state of harness

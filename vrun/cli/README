@@ -1,0 +1,3 @@
+This Modules should provide the usage help and ensure the users provide the correct arguments.
+It should collect the required inputs and call the core module.
+In case it sees error in user inputs, it throws back error on STDERR.

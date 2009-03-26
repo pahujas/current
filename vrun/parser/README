@@ -1,0 +1,2 @@
+This module is responsible for taking xml inputs and parsing them. It validates each input against its schema.
+

@@ -1,0 +1,2 @@
+Core engine which is connection between cli module and all internal module.
+It decides which modules to call and when.

@@ -1,0 +1,3 @@
+This module provides tools to manage process
+ -- ensure each testctrl process completes in alloted time
+ -- Kill in case process goes awry
